@@ -1,0 +1,45 @@
+import datetime
+import time
+from pygame import mixer
+mixer.init()
+mixer.music.set_volume(20.0)
+current_time=datetime.datetime.now()   #Storing the current time
+h=current_time.hour                    #Storing the current hour
+m=current_time.minute
+print("Current time - {}:{}".format(h,m))
+
+def water():
+    time.sleep(1800)
+    mixer.music.load('Drag Me Down [Mp3Visit.Com].mp3')
+    mixer.music.play()
+    i = input("Drink water to stop the alarm \nStatus - Drank/Not yet - ")
+    if i == "Drank":
+        mixer.music.stop()
+        with open("Water.txt","a") as f:
+            f.write(f"Drank water at {datetime.datetime.now()} \n")
+
+def eyes():
+    time.sleep(2700)
+    mixer.music.load('Change Your Ticket (one Direction) [Mp3glu.net].mp3')
+    mixer.music.play()
+    i = input("Complete Eye Exercise to stop the alarm \nStatus - Done/Not yet - ")
+    if i == "Done":
+        mixer.music.stop()
+        with open("Eye.txt","a") as f:
+            f.write(f"Done eye exercise at {datetime.datetime.now()} \n")
+
+def activity():
+    time.sleep(3600)
+    mixer.music.load('one-direction-no-control.mp3')
+    mixer.music.play()
+    i = input("Workout to stop the alarm \nStatus - Done/Not yet - ")
+    if i == "Done":
+        mixer.music.stop()
+        with open("Workout.txt","a") as f:
+            f.write(f"Done workout at {datetime.datetime.now()} \n")
+
+if h>=9 and h<=17:
+    for t in range(h,18):
+        water()
+        eyes()
+        activity()
